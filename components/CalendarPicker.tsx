@@ -21,33 +21,38 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { toast } from "@/hooks/use-toast";
 
 const FormSchema = z.object({
   day: z.date({
-    required_error: "Location required",
+    required_error: "Date required",
   }),
 });
 
-export function CalendarPicker() {
+interface CalendarPickerProps {
+  selectedDate: Date | null;
+  onDateChange: (date: string | null) => void;
+}
+
+export function CalendarPicker({
+  selectedDate,
+  onDateChange,
+}: CalendarPickerProps) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      day: selectedDate || null,
+    },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+  const onSelectDate = (date: Date | undefined) => {
+    const formattedDate = date ? format(date, "dd/MMM/yyyy") : null;
+    form.setValue("day", date ?? null);
+    onDateChange(formattedDate);
+  };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form className="space-y-8">
         <FormField
           control={form.control}
           name="day"
@@ -64,7 +69,7 @@ export function CalendarPicker() {
                       )}
                     >
                       {field.value ? (
-                        format(field.value, "PPP")
+                        format(field.value, "dd/MMM/yyyy")
                       ) : (
                         <span>Pick a date</span>
                       )}
@@ -76,7 +81,7 @@ export function CalendarPicker() {
                   <Calendar
                     mode="single"
                     selected={field.value}
-                    onSelect={field.onChange}
+                    onSelect={onSelectDate}
                     disabled={(date) => date < new Date()}
                     initialFocus
                   />

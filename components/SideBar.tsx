@@ -1,4 +1,4 @@
-import { Contact, Home, Search, Send, Settings } from "lucide-react";
+import { Contact, History, Home, Send, Settings } from "lucide-react";
 import Link from "next/link";
 import { DialogBox } from "./DialogBox";
 
@@ -13,10 +13,10 @@ export function SideBar() {
           <Home className="self-center" size={"25"} /> Home
         </Link>
         <Link
-          href="/explore"
+          href="/history"
           className="gap-4 font-bold text-2xl text-white flex pl-4 py-2 transition-colors duration-300 hover:bg-[#181818] rounded-lg cursor-pointer"
         >
-          <Search className="self-center" size={"25"} /> Explore
+          <History className="self-center" size={"25"} /> History
         </Link>
         <Link
           href="/chat"
