@@ -91,3 +91,132 @@
 .scroll-smooth {
     scroll-behavior: smooth;
 }
+
+.bio-container {
+    position: relative;
+    padding: 20px; /* Add some padding */
+    background-color: #09090b; /* Dark background for contrast */
+    border-radius: 20px; /* Round corners */
+    overflow: hidden; /* Prevents overflow of pseudo-elements */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+}
+
+.bio-content {
+    position: relative; /* Relative positioning for content */
+    z-index: 1; /* Ensure content is above pseudo-elements */
+}
+
+.bio-container::before,
+.bio-container::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%; /* Create circular shape */
+    background-color: rgba(255, 255, 255, 0.2); /* Cloud color */
+    z-index: 0; /* Behind the content */
+}
+
+/* Left cloud shape */
+.bio-container::before {
+    width: 100px; /* Width of the left cloud */
+    height: 100px; /* Height of the left cloud */
+    top: -50px; /* Position it above */
+    left: -50px; /* Position it to the left */
+}
+
+/* Right cloud shape */
+.bio-container::after {
+    width: 120px; /* Width of the right cloud */
+    height: 120px; /* Height of the right cloud */
+    bottom: -60px; /* Position it below */
+    right: -60px; /* Position it to the right */
+}
+
+/* Star shape */
+.star {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: white; /* Star color */
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+    z-index: 0; /* Behind the content */
+    animation: twinkle 2s infinite alternate; /* Add twinkling effect to stars */
+}
+
+/* Random star positions */
+.star1 {
+    top: 20px;
+    left: 30px;
+}
+.star2 {
+    top: 60px;
+    right: 20px;
+}
+.star3 {
+    bottom: 40px;
+    left: 50px;
+}
+.star4 {
+    bottom: 10px;
+    right: 30px;
+}
+.star5 {
+    top: 80px;
+    left: 60px;
+}
+
+/* Moon shape */
+.moon {
+    position: absolute;
+    top: 10px; /* Adjust for positioning */
+    left: 10px; /* Adjust for positioning */
+    width: 65px;
+    height: 65px;
+    background-color: rgba(255, 255, 255, 0.4); /* Moon color */
+    border-radius: 50%; /* Circular shape */
+    clip-path: ellipse(60% 50% at 50% 50%); /* Create moon crescent shape */
+    z-index: 0; /* Behind the content */
+    animation: float 5s ease-in-out infinite; /* Add floating effect to moon */
+}
+
+@keyframes twinkle {
+    0% {
+        transform: scale(1); /* Start at normal size */
+        opacity: 0.5; /* Start with lower opacity */
+    }
+    100% {
+        transform: scale(1.5); /* Grow to 1.5 times size */
+        opacity: 1; /* End with full opacity */
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes shine {
+    0% {
+        opacity: 0.6; /* Start with lower opacity */
+    }
+    100% {
+        opacity: 1; /* End with full opacity */
+    }
+}

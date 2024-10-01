@@ -8,15 +8,19 @@ datasource db {
 }
 
 model User {
-  id     String   @id @default(uuid())
-  email  String   @unique
-  name   String
-  image  String
-  travel Travel[]
+  id         String       @id @default(uuid())
+  email      String       @unique
+  name       String
+  image      String
+  location   String?
+  bio        String?
+  gender     String?
+  travel     Travel[]
+  TravelUser TravelUser[]
 }
 
 model Travel {
-  id     String      @id @default(uuid())
+  id     String       @id @default(uuid())
   name   String
   image  String
   from   String
@@ -26,8 +30,18 @@ model Travel {
   seats  Int
   date   String
   time   String
-  User   User?       @relation(fields: [userId], references: [id])
+  User   User?        @relation(fields: [userId], references: [id])
   userId String?
+  users  TravelUser[]
+}
+
+model TravelUser {
+  id       String @id @default(uuid())
+  phone    String
+  user     User   @relation(fields: [userId], references: [id])
+  userId   String
+  travel   Travel @relation(fields: [travelId], references: [id])
+  travelId String
 }
 
 enum Gender {

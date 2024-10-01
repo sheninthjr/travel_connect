@@ -14,6 +14,7 @@ export function NavBar() {
   const handleLogout = async () => {
     try {
       await signOut({ redirect: false });
+      localStorage.clear();
       toast({
         variant: "success",
         title: "Logout Successful",
