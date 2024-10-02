@@ -6,20 +6,29 @@ import axios from "axios";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Chatting } from "@/components/Chatting";
 
+interface User {
+  id: string;
+  name: string;
+  image: string;
+}
+
 export default function Chat() {
-  const [users, setUsers] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [users, setUsers] = useState<User[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const userId = localStorage.getItem("userId");
-  const [selectedUserId, setSelectedUserId] = useState(null);
-  const [selectedUserName, setSelectedUserName] = useState(null);
-  const [selectedUserImage, setSelectedUserImage] = useState(null);
+  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+  const [selectedUserName, setSelectedUserName] = useState<string | null>(null);
+  const [selectedUserImage, setSelectedUserImage] = useState<string | null>(
+    null,
+  );
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get("/api/getuser");
         const filterUserData = response.data.filter(
-          (user) => user.id !== userId,
+          (user: User) => user.id !== userId,
         );
         setUsers(filterUserData);
       } catch (error) {
@@ -28,22 +37,33 @@ export default function Chat() {
     };
 
     fetchUsers();
-  }, []);
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [userId]);
 
   const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
-  const handleUserClick = (userId: string, username: string, image: string) => {
-    setSelectedUserId(userId);
-    setSelectedUserName(username);
+  const handleUserClick = (id: string, name: string, image: string) => {
+    setSelectedUserId(id);
+    setSelectedUserName(name);
     setSelectedUserImage(image);
   };
 
   return (
     <div className="flex flex-col bg-background h-screen">
       <div className="flex flex-grow overflow-hidden">
-        <aside className="w-1/3 border-r border-slate-700 bg-background pl-4 pr-4 overflow-y-auto">
+        <aside
+          className={`w-full md:w-1/3 border-r border-slate-700 bg-background pl-4 pr-4 overflow-y-auto ${selectedUserId && isMobile ? "hidden" : "block"}`}
+        >
           <h2 className="p-4 font-extrabold text-2xl">Messages</h2>
 
           <div className="relative w-full mb-4">
@@ -61,26 +81,30 @@ export default function Chat() {
             {filteredUsers.map((user) => (
               <li
                 key={user.id}
-                className="flex items-center p-4 gap-3 hover:bg-[#181818] rounded-xl cursor-pointer"
+                className="flex items-center p-4 gap-3 hover:bg-[#181818] bio-container rounded-xl cursor-pointer"
                 onClick={() => handleUserClick(user.id, user.name, user.image)}
               >
                 <Avatar>
                   <AvatarImage src={user.image} alt={user.name} />
                 </Avatar>
-                <span>{user.name}</span>
+                <div className="star star2"></div>
+                <div className="star star4"></div>
+                <span className="bio-content">{user.name}</span>
               </li>
             ))}
           </ul>
         </aside>
-        {selectedUserId ? (
-          <Chatting
-            userId={selectedUserId}
-            name={selectedUserName}
-            image={selectedUserImage}
-          />
-        ) : (
-          <span></span>
-        )}
+        <div
+          className={`flex-grow overflow-hidden ${selectedUserId ? "block" : "hidden"} md:block`}
+        >
+          {selectedUserId && (
+            <Chatting
+              userId={selectedUserId}
+              name={selectedUserName!}
+              image={selectedUserImage!}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

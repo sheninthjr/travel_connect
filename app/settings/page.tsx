@@ -72,9 +72,9 @@ export default function Settings() {
   };
 
   return (
-    <div className="flex flex-col items-start p-6 bg-background text-white h-screen">
-      <div className="flex justify-between w-full items-center mb-8">
-        <h1 className="text-4xl font-extrabold">
+    <div className="flex flex-col items-start p-4 sm:p-6 bg-background text-white h-screen w-full">
+      <div className="flex justify-between w-full items-center mb-4 sm:mb-8">
+        <h1 className="text-2xl sm:text-4xl font-extrabold">
           <a href="/settings">Settings</a>
         </h1>
         <div className="text-center">
@@ -91,14 +91,13 @@ export default function Settings() {
       </div>
       {loading ? (
         <div className="flex flex-col w-full max-w-2xl">
-          <div className="flex items-start space-x-6">
-            <Skeleton className="h-16 w-16 rounded-full" />{" "}
+          <div className="flex items-start space-x-4 sm:space-x-6">
+            <Skeleton className="h-12 w-12 sm:h-16 sm:w-16 rounded-full" />
             <div className="flex-grow space-y-4">
-              <Skeleton className="h-8 w-full" />
-              <Skeleton className="h-6 w-full" />
-              <Skeleton className="h-6 w-full" />
-              <Skeleton className="h-6 w-full" />
-              <Skeleton className="h-6 w-full" />
+              <Skeleton className="h-6 sm:h-8 w-full" />
+              <Skeleton className="h-4 sm:h-6 w-full" />
+              <Skeleton className="h-4 sm:h-6 w-full" />
+              <Skeleton className="h-4 sm:h-6 w-full" />
             </div>
           </div>
         </div>
@@ -106,8 +105,8 @@ export default function Settings() {
         <div className="text-red-500 text-center">{error}</div>
       ) : user ? (
         <div className="flex flex-col w-full overflow-y-auto pb-10">
-          <div className="flex items-start space-x-6">
-            <Avatar className="h-16 w-16">
+          <div className="flex flex-col sm:flex-row items-center pt-3 sm:items-start space-y-4 sm:space-x-6">
+            <Avatar className="h-16 w-16 sm:h-24 sm:w-24 mx-auto sm:mx-0">
               <AvatarImage src={user.image} alt={user.name} />
             </Avatar>
             <div className="flex-grow">
@@ -149,13 +148,15 @@ export default function Settings() {
                 </>
               ) : (
                 <div className="flex flex-col w-full max-w-2xl space-y-3 rounded-lg shadow-lg">
-                  <h2 className="text-3xl font-extrabold text-white mb-2">
+                  <h2 className="text-xl sm:text-3xl font-extrabold text-white mb-2 self-center lg:self-start md:self-start">
                     {user.name}
                   </h2>
                   <div className="bio-container">
-                    <div className="bio-content text-lg text-gray-300 space-y-3">
-                      <div className="font-semibold text-2xl">Email:</div>
-                      <div className="p-4 font-bold text-2xl">
+                    <div className="bio-content text-lg sm:text-xl text-gray-300 space-y-3">
+                      <div className="font-semibold text-xl sm:text-2xl">
+                        Email:
+                      </div>
+                      <div className="p-4 font-bold text-lg sm:text-2xl">
                         {user.email || "Update your email"}
                       </div>
                     </div>
@@ -163,8 +164,10 @@ export default function Settings() {
                     <div className="star star4"></div>
                   </div>
                   <div className="bio-container">
-                    <div className="bio-content text-lg text-gray-300 space-y-3">
-                      <div className="font-semibold text-2xl">Bio:</div>
+                    <div className="bio-content text-lg sm:text-xl text-gray-300 space-y-3">
+                      <div className="font-semibold text-xl sm:text-2xl">
+                        Bio:
+                      </div>
                       <div className="p-4">
                         {user.bio || "No bio available"}
                       </div>
@@ -177,9 +180,11 @@ export default function Settings() {
                     <div className="star star5"></div>
                   </div>
                   <div className="bio-container">
-                    <div className="bio-content text-lg text-gray-300 space-y-3">
-                      <div className="font-semibold text-2xl">Gender:</div>
-                      <div className="p-4 font-bold text-2xl">
+                    <div className="bio-content text-lg sm:text-xl text-gray-300 space-y-3">
+                      <div className="font-semibold text-xl sm:text-2xl">
+                        Gender:
+                      </div>
+                      <div className="p-4 font-bold text-lg sm:text-2xl">
                         {user.gender || "Update your gender"}
                       </div>
                     </div>
@@ -187,9 +192,11 @@ export default function Settings() {
                     <div className="star star4"></div>
                   </div>
                   <div className="bio-container">
-                    <div className="bio-content text-lg text-gray-300 space-y-3">
-                      <div className="font-semibold text-2xl">Location:</div>
-                      <div className="p-4 font-bold text-2xl">
+                    <div className="bio-content text-lg sm:text-xl text-gray-300 space-y-3">
+                      <div className="font-semibold text-xl sm:text-2xl">
+                        Location:
+                      </div>
+                      <div className="p-4 font-bold text-lg sm:text-2xl">
                         {user.location || "Update your location"}
                       </div>
                     </div>

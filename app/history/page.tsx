@@ -71,7 +71,7 @@ export default function History() {
             : sortedTravel.map((travel) => (
                 <Card
                   key={travel.id}
-                  className="p-6 space-y-4 shadow-md rounded-lg"
+                  className="p-6 space-y-4 shadow-md rounded-lg bio-container"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">

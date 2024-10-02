@@ -57,7 +57,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex h-screen justify-start items-start pt-4 pl-4">
+    <div className="flex h-screen justify-start items-start pt-4 pl-4 pr-4">
       <main className="max-w-5xl w-full overflow-y-auto h-screen">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
           {loading

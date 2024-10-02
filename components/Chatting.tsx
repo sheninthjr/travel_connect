@@ -86,7 +86,7 @@ export function Chatting({
   }, [serverMessages]);
 
   return (
-    <main className="flex flex-col flex-grow bg-background">
+    <main className="flex flex-col flex-grow bg-background h-screen">
       <header className="p-4 border-b border-slate-700">
         <div className="flex gap-3 items-center">
           <Avatar>

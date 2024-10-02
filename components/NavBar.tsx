@@ -33,10 +33,10 @@ export function NavBar() {
 
   return (
     <div className="flex justify-between p-3 items-center h-16 border-b border-slate-700 shadow-xl w-full text-white">
-      <div className="font-extrabold text-3xl shadow-md">
+      <div className="font-extrabold ml-10 text-2xl md:text-3xl lg:text-3xl shadow-md">
         <a href="/">Travel Connect</a>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 md:gap-4 lg:gap-4">
         {session?.user && (
           <>
             {session.user.image ? (

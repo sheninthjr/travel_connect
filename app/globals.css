@@ -85,7 +85,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #black;
+    background: black;
 }
 
 .scroll-smooth {
@@ -94,49 +94,46 @@
 
 .bio-container {
     position: relative;
-    padding: 20px; /* Add some padding */
-    background-color: #09090b; /* Dark background for contrast */
-    border-radius: 20px; /* Round corners */
-    overflow: hidden; /* Prevents overflow of pseudo-elements */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+    padding: 20px; 
+    background-color: #09090b;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); 
 }
 
 .bio-content {
-    position: relative; /* Relative positioning for content */
-    z-index: 1; /* Ensure content is above pseudo-elements */
+    position: relative;
+    z-index: 1;
 }
 
 .bio-container::before,
 .bio-container::after {
     content: "";
     position: absolute;
-    border-radius: 50%; /* Create circular shape */
-    background-color: rgba(255, 255, 255, 0.2); /* Cloud color */
-    z-index: 0; /* Behind the content */
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2); 
+    z-index: 0; 
 }
 
-/* Left cloud shape */
 .bio-container::before {
-    width: 100px; /* Width of the left cloud */
-    height: 100px; /* Height of the left cloud */
-    top: -50px; /* Position it above */
-    left: -50px; /* Position it to the left */
+    width: 100px; 
+    height: 100px;
+    top: -50px; 
+    left: -50px;
 }
 
-/* Right cloud shape */
 .bio-container::after {
-    width: 120px; /* Width of the right cloud */
-    height: 120px; /* Height of the right cloud */
-    bottom: -60px; /* Position it below */
-    right: -60px; /* Position it to the right */
+    width: 120px; 
+    height: 120px; 
+    bottom: -60px; 
+    right: -60px;
 }
 
-/* Star shape */
 .star {
     position: absolute;
     width: 10px;
     height: 10px;
-    background-color: white; /* Star color */
+    background-color: white; 
     clip-path: polygon(
         50% 0%,
         61% 35%,
@@ -149,11 +146,10 @@
         2% 35%,
         39% 35%
     );
-    z-index: 0; /* Behind the content */
-    animation: twinkle 2s infinite alternate; /* Add twinkling effect to stars */
+    z-index: 0; 
+    animation: twinkle 2s infinite alternate;
 }
 
-/* Random star positions */
 .star1 {
     top: 20px;
     left: 30px;
@@ -175,28 +171,27 @@
     left: 60px;
 }
 
-/* Moon shape */
 .moon {
     position: absolute;
-    top: 10px; /* Adjust for positioning */
-    left: 10px; /* Adjust for positioning */
+    top: 10px; 
+    left: 10px;
     width: 65px;
     height: 65px;
-    background-color: rgba(255, 255, 255, 0.4); /* Moon color */
-    border-radius: 50%; /* Circular shape */
-    clip-path: ellipse(60% 50% at 50% 50%); /* Create moon crescent shape */
-    z-index: 0; /* Behind the content */
-    animation: float 5s ease-in-out infinite; /* Add floating effect to moon */
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    clip-path: ellipse(60% 50% at 50% 50%);
+    z-index: 0; 
+    animation: float 5s ease-in-out infinite;
 }
 
 @keyframes twinkle {
     0% {
-        transform: scale(1); /* Start at normal size */
-        opacity: 0.5; /* Start with lower opacity */
+        transform: scale(1);
+        opacity: 0.5; 
     }
     100% {
-        transform: scale(1.5); /* Grow to 1.5 times size */
-        opacity: 1; /* End with full opacity */
+        transform: scale(1.5); 
+        opacity: 1;
     }
 }
 
@@ -214,9 +209,9 @@
 
 @keyframes shine {
     0% {
-        opacity: 0.6; /* Start with lower opacity */
+        opacity: 0.6;
     }
     100% {
-        opacity: 1; /* End with full opacity */
+        opacity: 1; 
     }
 }
