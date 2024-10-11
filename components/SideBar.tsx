@@ -1,5 +1,5 @@
 "use client";
-import { Contact, History, Home, Send, Settings, Menu, X } from "lucide-react";
+import { History, Home, Send, Settings, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { DialogBox } from "./DialogBox";
 import { useState } from "react";

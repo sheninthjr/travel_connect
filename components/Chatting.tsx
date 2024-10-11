@@ -54,7 +54,7 @@ export function Chatting({
     };
 
     setWebSocket(ws);
-  }, [userId]);
+  }, [userId, roomId]);
 
   const handleMessage = () => {
     if (webSocket && message.trim()) {
