@@ -38,7 +38,7 @@ export function DialogBox() {
   const [vehicleType, setVehicleType] = useState("");
   const [seats, setSeats] = useState<number>();
   const [time, setTime] = useState("");
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date | any>(null);
   const [open, setOpen] = useState(false);
   const handleSave = async () => {
     const formattedTime = formatTime(time);
@@ -55,6 +55,7 @@ export function DialogBox() {
       time: formattedTime,
       selectedDate: selectedDate,
     };
+
     try {
       const response = await axios.post("/api/createtravel", travelData);
       if (response) {
@@ -97,12 +98,14 @@ export function DialogBox() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Create a Travel</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="font-mono text-3xl">
+            Create a Travel
+          </DialogTitle>
+          <DialogDescription className="font-mono">
             Add your location of your travel so that others can join with you
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
+        <div className="grid gap-4 py-4 font-mono">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
               Name

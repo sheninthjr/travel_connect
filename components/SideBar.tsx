@@ -16,7 +16,7 @@ export function SideBar() {
 
 function DesktopSideBar() {
   return (
-    <div className="hidden md:flex lg:flex w-1/4 flex-col justify-between p-6 space-y-6 border-r border-slate-700 shadow-lg h-full">
+    <div className="hidden font-mono md:flex lg:flex w-1/4 flex-col justify-between p-6 space-y-6 border-r border-slate-700 shadow-lg h-full">
       <div className="flex flex-col space-y-6">
         <Link
           href="/"

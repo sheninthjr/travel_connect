@@ -116,33 +116,33 @@ export default function Settings() {
                     name="name"
                     value={updatedUser?.name}
                     onChange={handleInputChange}
-                    className="bg-black text-white"
+                    className="bg-black rounded-xl font-mono text-white h-12"
                   />
                   <Input
                     name="email"
                     value={updatedUser?.email}
                     onChange={handleInputChange}
-                    className="bg-black text-white mt-4"
+                    className="bg-black rounded-xl font-mono text-white mt-4 h-12"
                   />
                   <Textarea
                     name="bio"
                     value={updatedUser?.bio || ""}
                     onChange={handleInputChange}
-                    className="bg-black text-white mt-4 w-full p-2 rounded"
+                    className="bg-black rounded-xl font-mono text-white mt-4 h-24 w-full p-2"
                     placeholder="Enter your bio..."
                   />
                   <Input
                     name="gender"
                     value={updatedUser?.gender || ""}
                     onChange={handleInputChange}
-                    className="bg-black text-white mt-4"
+                    className="bg-black text-white font-mono mt-4 h-12 rounded-xl"
                     placeholder="Enter your gender"
                   />
                   <Input
                     name="location"
                     value={updatedUser?.location || ""}
                     onChange={handleInputChange}
-                    className="bg-black text-white mt-4"
+                    className="bg-black text-white font-mono mt-4 h-12 rounded-xl"
                     placeholder="Enter your location"
                   />
                 </>
