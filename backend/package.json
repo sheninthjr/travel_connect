@@ -12,6 +12,8 @@
   "description": "",
   "dependencies": {
     "express": "^4.21.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2",
     "websocket": "^1.0.35",
     "ws": "^8.18.0"
   }
