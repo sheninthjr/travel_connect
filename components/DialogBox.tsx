@@ -38,7 +38,7 @@ export function DialogBox() {
   const [vehicleType, setVehicleType] = useState("");
   const [seats, setSeats] = useState<number>();
   const [time, setTime] = useState("");
-  const [selectedDate, setSelectedDate] = useState<Date | any>(null);
+  const [selectedDate, setSelectedDate] = useState();
   const [open, setOpen] = useState(false);
   const handleSave = async () => {
     const formattedTime = formatTime(time);
@@ -72,7 +72,7 @@ export function DialogBox() {
           description: "Failed to add your travel to the list",
         });
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error creating travel:", error);
     }
   };
@@ -202,8 +202,8 @@ export function DialogBox() {
               Date
             </Label>
             <CalendarPicker
-              selectedDate={selectedDate}
-              onDateChange={setSelectedDate}
+              selectedDate={selectedDate!}
+              onDateChange={setSelectedDate as DateConstructor}
             />
           </div>
         </div>

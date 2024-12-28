@@ -40,13 +40,13 @@ export function CalendarPicker({
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      day: selectedDate || null,
+      day: selectedDate || undefined,
     },
   });
 
   const onSelectDate = (date: Date | undefined) => {
     const formattedDate = date ? format(date, "dd/MMM/yyyy") : null;
-    form.setValue("day", date ?? null);
+    form.setValue("day", date!);
     onDateChange(formattedDate);
   };
 

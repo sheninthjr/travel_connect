@@ -1,7 +1,6 @@
 "use client";
 
 import { useInit } from "@/hooks/useInit";
-import { Button } from "@/components/ui/button";
 import { ToastAction } from "@/components/ui/toast";
 import { signOut } from "next-auth/react";
 import Image from "next/image";

@@ -6,11 +6,13 @@ import { TravelProps } from "@/interface/TravelProps";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useSession } from "next-auth/react";
 
 export default function History() {
   const [travels, setTravels] = useState<TravelProps[]>([]);
   const [loading, setLoading] = useState(true);
-  const userId = localStorage.getItem("userId");
+  const { data: session } = useSession();
+  const userId = session?.user.id;
   const currentDateTime = new Date();
 
   const upcomingTravels = travels.filter((travel) => {

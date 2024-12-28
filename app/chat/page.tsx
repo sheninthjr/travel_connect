@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import axios from "axios";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Chatting } from "@/components/Chatting";
+import { useSession } from "next-auth/react";
 
 interface User {
   id: string;
@@ -15,7 +16,8 @@ interface User {
 export default function Chat() {
   const [users, setUsers] = useState<User[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const userId = localStorage.getItem("userId");
+  const { data: session } = useSession()
+  const userId = session?.user.id;
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const [selectedUserName, setSelectedUserName] = useState<string | null>(null);
   const [selectedUserImage, setSelectedUserImage] = useState<string | null>(

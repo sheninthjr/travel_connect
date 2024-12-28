@@ -6,6 +6,7 @@ export async function GET(req: NextRequest) {
   const userId = searchParams.get("userId");
 
   try {
+    if(userId) {
     const travels = await prisma.travelUser.findMany({
       where: { userId: userId },
       include: {
@@ -16,6 +17,7 @@ export async function GET(req: NextRequest) {
     const travelHistory = travels.map((entry) => entry.travel);
 
     return NextResponse.json(travelHistory, { status: 200 });
+  }
   } catch (error) {
     console.error("Error fetching travel history:", error);
     return NextResponse.json(
