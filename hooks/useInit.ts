@@ -8,8 +8,8 @@ export const useInit = () => {
 
   useEffect(() => {
     const handleUser = async () => {
+      localStorage.removeItem("userId");
       const userId = localStorage.getItem("userId");
-
       if (!userId && session?.user) {
         try {
           localStorage.setItem("userId", session?.user?.id);
@@ -19,9 +19,6 @@ export const useInit = () => {
       }
     };
     handleUser();
-    if (status === "unauthenticated") {
-      router.push("/api/auth/signin");
-    }
   }, [session, status, router]);
 
   return { session, status };

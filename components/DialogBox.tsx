@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -26,12 +26,14 @@ import { MapPinPlus } from "lucide-react";
 import { CalendarPicker } from "./CalendarPicker";
 import { useToast } from "@/hooks/use-toast";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export function DialogBox() {
   const [name, setName] = useState("");
   const { toast } = useToast();
   const [locationFrom, setLocationFrom] = useState("");
-  const { data: session } = useSession();
+  const { data: session,status } = useSession();
+  const router = useRouter()
   const image = session?.user?.image;
   const [locationTo, setLocationTo] = useState("");
   const [gender, setGender] = useState("");
@@ -40,6 +42,13 @@ export function DialogBox() {
   const [time, setTime] = useState("");
   const [selectedDate, setSelectedDate] = useState();
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/api/auth/signin");
+    }
+  },[open])
+
   const handleSave = async () => {
     const formattedTime = formatTime(time);
     const userId = localStorage.getItem("userId");
